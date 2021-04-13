@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function func() {
+        c = "c";
+        console.log("this", this);
+      }
+      func();
+
+      function Foo() {
+        this.b = "b";
+        this.getName = function () {
+          console.log(1);
+        };
+        console.log(this);
+      }
+      var a = new Foo();
+
+      var obj = {
+        a: 1,
+        b: function () {
+          console.log(this);
+        },
+      };
+      // 1、作为对象调用时，指向该对象 obj.b(); // 指向obj
+      // 2、作为函数调用, var b = obj.b; b(); // 指向全局window
+      // 3、作为构造函数调用 var b = new Fun(); // this指向当前实例对象
+      // 4、作为call与apply调用 obj.b.apply(object, []); // this指向当前的object
+
+      obj.b.apply(a, []);
+
+      var value = 1;
+
+      var foo = {
+        value: 2,
+        bar: function () {
+          return this.value;
+        },
+      };
+      //示例1
+      console.log(foo.bar());//2
+      //示例2
+      console.log(foo.bar());//2
+      //示例3
+      console.log((foo.bar = foo.bar)());//1
+      //示例4
+      console.log((false || foo.bar)());//1
+      //示例5
+      console.log((foo.bar, foo.bar)());//1
+    </script>
+  </body>
+</html>

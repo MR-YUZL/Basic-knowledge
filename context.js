@@ -97,24 +97,19 @@ checkscope();
 //查到scope2的值，返回后函数执行完毕，函数上下文从执行栈弹出，
 // ECStack = [globalContext];
 
-
 //执行上下文的代码分为两个步骤 1 分析 2 执行
 //进入执行上下文
 //代码执行
 
-console.log(foo);
+// console.log(foo);
 
 var foo = 1;
 
-function foo(){
-    console.log("foo");
+function foo() {
+  console.log("foo");
 }
 
 // console.log(foo);
-
-
-
-
 
 //进入执行上下文时先处理函数声明，之后是变量声明，如果变量名称和函数名称相同，则变量声明不会影响之前的属性
 
@@ -133,14 +128,14 @@ function foo(){
 // 由名称和对应值（undefined）组成一个变量对象的属性被创建；
 // 如果变量名称跟已经声明的形式参数或函数相同，则变量声明不会干扰已经存在的这类属性
 
-function foo(a){
-  var b = 0 
+function foo(a) {
+  var b = 0;
   function c() {}
-  var d = function() {};
-  b = 3
+  var d = function () {};
+  b = 3;
 }
 
-foo(1)
+// foo(1);
 
 // 此时AO为
 // AO = {
@@ -165,7 +160,6 @@ foo(1)
 //   d: reference to FunctionExpression "d"
 // }
 
-
 // 全局上下文的变量对象初始化是全局对象
 
 // 函数上下文的变量对象初始化只包括 Arguments 对象
@@ -173,3 +167,18 @@ foo(1)
 // 在进入执行上下文时会给变量对象添加形参、函数声明、变量声明等初始的属性值
 
 // 在代码执行阶段，会再次修改变量对象的属性值
+
+// var func = function () {
+//   console.log("a");
+// };
+
+func()
+
+var func = function () {
+  console.log("c");
+};
+
+function func() {
+  console.log("b");
+}
+
