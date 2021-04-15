@@ -71,5 +71,10 @@ function intanceofNew(leftVal, rightVal) {
 
 console.log(intanceofNew(p, Person));
 let str = "a";
+let obj = new Object({})
 console.log(str.__proto__ === String.prototype);
 console.log(intanceofNew(str, String));
+console.log(obj.prototype,obj)  
+function a(){}
+console.log(a.prototype)  //在不赋值的情况下，只有函数的prototype属性有值
+//isPrototypeOf判断某个对象的prototype是否在某个实例的原型链上
