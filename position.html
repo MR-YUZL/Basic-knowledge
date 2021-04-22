@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        /* position: relative;  设置后元素占满body */
+        /* width: 500px;
+        margin: 0 auto; */
+
+        width: 500px;
+        height: 1400px;
+        margin: 0 auto;
+      }
+
+      p {
+        background: aqua;
+        border: 3px solid blue;
+        padding: 10px;
+        margin: 10px;
+      }
+
+      h1 {
+        position: fixed;
+        top: 0;
+        width: 500px;
+        margin: 0 auto;
+        background: white;
+        padding: 10px;
+      }
+      .positioned {
+        /* position: absolute;
+        background: yellow;
+        top: 30px;
+        left: 200px;
+        margin: 0; */
+
+        position: sticky;
+        top: 30px;
+        left: 30px;
+      }
+      p:nth-of-type(1) {
+        /* position: absolute;
+        background: lime;
+        top: 10px;
+        right: 30px;
+        z-index: 1; */
+        margin-top: 60px;
+      }
+
+      span {
+        background: red;
+        border: 1px solid black;
+      }
+
+      dt {
+        background-color: black;
+        color: white;
+        padding: 10px;
+        position: sticky;
+        top: 0;
+        left: 0;
+        margin: 1em 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <h1>Absolute positioning</h1>
+
+    <p>
+      I am a basic block level element. My adjacent block level elements sit on
+      new lines below me.
+    </p>
+
+    <p class="positioned">
+      Now I'm absolutely positioned, I'm not playing by the rules any more!
+    </p>
+
+    <p>
+      We are separated by our margins. Because of margin collapsing, we are
+      separated by the width of one of our margins, not both.
+    </p>
+
+    <p>
+      inline elements <span>like this one</span> and <span>this one</span> sit
+      on the same line as one another, and adjacent text nodes, if there is
+      space on the same line. Overflowing inline elements
+      <span
+        >wrap onto a new line if possible — like this one containing text</span
+      >, or just go on to a new line if not, much like this image will do:
+      <img src="./Absolute positioning_files/long.jpg" />
+    </p> -->
+
+    <h1>Sticky positioning</h1>
+
+    <dl>
+      <dt>A</dt>
+      <dd>Apple</dd>
+      <dd>Ant</dd>
+      <dd>Altimeter</dd>
+      <dd>Airplane</dd>
+      <dt>B</dt>
+      <dd>Bird</dd>
+      <dd>Buzzard</dd>
+      <dd>Bee</dd>
+      <dd>Banana</dd>
+      <dd>Beanstalk</dd>
+      <dt>C</dt>
+      <dd>Calculator</dd>
+      <dd>Cane</dd>
+      <dd>Camera</dd>
+      <dd>Camel</dd>
+      <dt>D</dt>
+      <dd>Duck</dd>
+      <dd>Dime</dd>
+      <dd>Dipstick</dd>
+      <dd>Drone</dd>
+      <dt>E</dt>
+      <dd>Egg</dd>
+      <dd>Elephant</dd>
+      <dd>Egret</dd>
+    </dl>
+    <script>
+      //  position: static;静态定位 默认
+      // position: relative 相对定位
+      //position: absolute 绝对定位
+      //   绝对定位的元素不再存在于正常文档布局流中。相反，它坐在它自己的层独立于一切。
+      //   这是非常有用的：这意味着我们可以创建不干扰页面上其他元素的位置的隔离的UI功能。
+      //   例如，弹出信息框和控制菜单
+      //定为属性指定元素应距离每个包含元素的边的距离，我们说的绝对定位元素应该位于从“包含元素”的顶部30px，从左边30px
+      // 可以使用top，bottom，left和right 调整元素大小  当这些都等于0时，元素沾满屏幕 margins 仍会影响定位的元素
+      // top right left bottom  这些属性的值可以采用逻辑上期望的任何单位 ——px，mm，rems，％等。
+
+      //   如果所有的父元素都没有显式地定义position属性，那么所有的父元素默认情况下position属性都是static。
+      //   结果，绝对定位元素会被包含在初始块容器中。这个初始块容器有着和浏览器视口一样的尺寸，
+      //   并且<html>元素也被包含在这个容器里面。简单来说，绝对定位元素会被放在<html>元素的外面，
+      //   并且根据浏览器视口来定位。
+
+      //当定位上下文中不止一个定位元素时，标签顺序中后定位的元素将赢得先定位的元素。 此时可以根据z-index来改变层叠级
+
+      //   绝对定位固定元素是相对于 <html> 元素或其最近的定位祖先，而固定定位(fixed)固定元素则是相对于浏览器视口本身。
+      //    这意味着您可以创建固定的有用的UI项目，如持久导航菜单。
+
+      //position: sticky 它基本上是相对位置和固定位置的混合体，它允许被定位的元素表现得像相对定位一样，直到它滚动到某个阈值点（例如，从视口顶部起1​​0像素）为止，此后它就变得固定了
+    </script>
+  </body>
+</html>
