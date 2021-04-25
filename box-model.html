@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .margin {
+        height: 100px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="width: 100px; height: 100px; padding: 0 20px" id="dom"></div>
+    <div style="padding: 0 20px" id="dom2"></div>
+
+    <div style="background-color: black">
+      <!-- 高度为100px -->
+      <div class="margin"></div>
+    </div>
+    <script>
+      var d = document.getElementById("dom");
+      console.log(d.style.width, d.style.height); //100px 100px 只能获取到行内样式
+      var d2 = document.getElementById("dom2");
+      console.log(
+        d2.style.width,
+        d2.style.height,
+        d2.getBoundingClientRect().width,
+        d2.getBoundingClientRect().height,
+        d2.getBoundingClientRect()
+      ); // 空 空  1424 0
+
+      //盒模型分为IE盒模型和W3C标准盒模型。
+      //         1. W3C 标准盒模型：
+      //   属性width,height只包含内容content，不包含border和padding。
+
+      //       2. IE 盒模型：
+      // 属性width,height包含border和padding，指的是content+padding+border。
+      //可以由box-sizing(CSS新增的属性)控制，默认值为content-box，即标准盒模型
+      //如果将box-sizing设为border-box则用的是IE盒模型
+      //   css的盒模型由content(内容)、padding(内边距)、border(边框)、margin(外边距)组成。
+      //   但盒子的大小由content+padding+border这几部分决定，把margin算进去的那是盒子占据的位置，而不是盒子的大小
+
+      //   尽量使用标准的W3C模型(需在页面中声明DOCTYPE类型)，这样可以避免多个浏览器对同一页面的不兼容
+      // 因为若不声明DOCTYPE类型，IE浏览器会将盒子模型解释为IE盒子模型，FireFox等会将其解释为W3C盒子模型；
+      // 若在页面中声明了DOCTYPE类型，所有的浏览器都会把盒模型解释为W3C盒模型。
+
+      //   BFC(Block Formatting Context)：块级格式化上下文。
+      // BFC决定了元素如何对其内容进行定位，以及与其他元素的关系和相互作用。当设计到可视化布局的时候，
+      // BFC提供了一个环境，HTML元素在这个环境中按照一定的规则进行布局。一个环境中的元素不会影响到其他环境中的布局。
+    </script>
+  </body>
+</html>
