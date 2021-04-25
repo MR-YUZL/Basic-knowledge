@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box .header p {
+        /* 100+ 10 + 1 */
+      }
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: red !important;
+      }
+
+      div {
+        width: 100px;
+        height: 100px;
+        background-color: green !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <script>
+      //从0开始，一个行内样式+1000，一个id选择器+100，一个属性选择器、class或者伪类+10，一个元素选择器，或者伪元素+1，通配符+0。
+
+      // 在css样式表中，同一个CSS样式你写了两次，后面的会覆盖前面的
+
+      // 不同的权重，权重值高则生效
+    //   当两个样式都使用!important时，权重值大的优先级更高
+
+    // 如果!important被用于一个简写的样式属性，那么这条简写的样式属性所代表的子属性都会被作用上!important。
+
+    // 使用复合写法的时候，它不光只加载了背景颜色样式，还加载了其它一些样式
+    // background:red;  background-color:red;
+
+    // 内联样式和外联样式的优先级和加载顺序有关。
+    </script>
+  </body>
+</html>
