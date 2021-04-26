@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+      }
+      /* .container {
+        padding-left: 200px;
+        padding-right: 200px;
+        overflow: hidden;
+        box-sizing: border-box;
+      } */
+      .float-l {
+        float: left;
+      }
+      .relative {
+        position: relative;
+      }
+
+      .header {
+        max-width: 920px;
+        /* 如果定宽，会出现滚动条 */
+        margin: 0 auto;
+        height: 100px;
+        background-color: burlywood;
+      }
+      /* .main {
+        max-width: 920px;
+        margin: 0 auto;
+        height: 400px;
+        background-color: #000;
+      } */
+      .footer {
+        max-width: 920px;
+        margin: 0 auto;
+        height: 100px;
+        background-color: red;
+      }
+
+      .parent {
+        overflow: hidden;
+        zoom: 1;
+        /* 由于设置overflow:hidden并不会触发IE6-浏览器的haslayout属性，所以需要设置zoom:1来兼容IE6-浏览器。 */
+        /* 一个元素要么自己对自身的内容进行计算大小和组织，要么依赖于父元素来计算尺寸和组织内容。为了调节这两个不同的概念，渲染引擎采用了 hasLayout 的属性，属性值可以为true或false。当一个元素的 hasLayout属性值为true时，我们说这个元素有一个布局 */
+        /* 
+        大多IE下的显示错误，就是源于 haslayout。如果它设置成了true，它就不得不去渲染它自己，因此元素不得不扩展去包含它的流出的内容。例如浮动或者很长很长的没有截断的单词，如果haslayout没有被设置成true，那么元素得依靠某个祖先元素来渲染它。这就是很多的ie bugs诞生的地方。 */
+        /* zoom 总是可以触发 hasLayout，但是在 IE5.0 中不支持。 */
+        /* display: flex; */
+
+        /* display: grid;
+        grid-template-columns: auto 1fr;
+        grid-gap: 20px; */
+      }
+
+      .left {
+        /* float: left; */
+        background-color: chartreuse;
+      }
+      .right {
+        /* 浮动元素，在html中需要放在前面 */
+        background-color: red;
+        /* zoom: 1; */
+        /* flex: 1; */
+      }
+
+      .container {
+        /* padding-left: 220px;
+        padding-right: 220px; */
+        min-width: 600px;
+        /* 确保中间内容可以显示出来，两倍left宽+right宽 */
+      }
+
+      .left {
+        float: left;
+        width: 200px;
+        height: 400px;
+        background: red;
+        margin-left: -100%;
+        /* position: relative;
+        left: -200px; */
+      }
+      .center {
+        float: left;
+        width: 100%;
+        height: 500px;
+        background: yellow;
+      }
+      .inner {
+        margin: 0 200px;
+      }
+      .right {
+        float: left;
+        width: 200px;
+        height: 400px;
+        background: blue;
+        margin-left: -200px;
+        /* position: relative;
+        right: -200px; */
+      }
+      /* 
+      .left {
+        float: left;
+
+        width: 200px;
+        background-color: brown;
+        position: relative;
+        left: -200px;
+        margin-left: -100%;
+        color: #fff;
+      }
+      .center {
+        float: left;
+        position: relative;
+        width: 100%;
+        background-color: #000;
+        color: #fff;
+      }
+      .right {
+        float: left;
+        position: relative;
+        right: -200px;
+        width: 200px;
+        background-color: red;
+        margin-left: -200px;
+      } */
+
+      #wrap {
+        min-height: 100%;
+        background-color: chartreuse;
+        padding-bottom: 50px;
+      }
+
+      /* 如果在内部设置margin-bottom 一定要设置bfc */
+      #footer {
+        height: 50px;
+        line-height: 50px;
+        margin-top: -50px;
+      }
+
+      /* .center,
+      .left,
+      .right {
+        padding-bottom: 10000px;
+        margin-bottom: -10000px;
+      }
+      .container {
+        padding-left: 220px;
+        padding-right: 220px;
+        overflow: hidden;//把溢出背景切掉
+        //等高布局
+      } */
+    </style>
+  </head>
+  <body>
+    <!-- <div class="header"></div>
+    <div class="main"></div>
+    <div class="footer"></div> -->
+
+    <!-- <div class="parent">
+      <div class="left">2</div>
+      <div class="right">1</div>
+    </div> -->
+
+    <!-- <div class="container">
+      <div class="center">
+        middle=leftleftleftleftleftljsaoidhaoshduahsiudhiasuhiuhdsiahadishleftljsaoid
+        middle=leftleftleftleftleftljsaoidhaoshduahsiudhiasuhiuhdsiahadishleftljsaoid
+        <h2>圣杯布局圣杯布局圣杯布局圣杯布局圣杯布局圣杯布局</h2>
+      </div>
+      <div class="left">
+        1e=leftleftleftleftleftljsaoidhaoshduahsiudhiasuhiuhdsiahadishleftljsaoid
+      </div>
+
+      <div class="right">right</div>
+    </div> -->
+
+    <!-- <article class="container">
+      <div class="center">
+        <h2>圣杯布局圣杯布局圣杯布局圣杯布局圣杯布局圣杯布局</h2>
+      </div>
+      <div class="left"><h2>杯布局圣杯布局圣asdasdasatljsaoidhaoshduahsiudhiasuhiuhdsiahadishlefsdasd杯布局圣杯布局圣杯布局圣</h2></div>
+      <div class="right"></div>
+    </article> -->
+    <!-- <div style="background-color: red;">
+        <div style="display: inline-block;"></div>
+    </div> -->
+    <!-- 
+    <article class="container">
+      <div class="center">
+        <div class="inner">双飞翼布局</div>
+      </div>
+      <div class="left"></div>
+      <div class="right"></div>
+    </article> -->
+
+    <!-- <div id="wrap">
+      <div class="main">
+        main <br />
+        main <br />
+        main <br />
+        main <br />
+        main <br />
+        main <br />
+        main <br />
+        main <br />
+        main <br />
+        main <br />
+        main <br />
+        main <br />
+      </div>
+    </div>
+    <div id="footer">footer</div> -->
+
+    <div style="display: flex;flex-direction: column;height: 100%;">
+      <div style="background-color: chartreuse;">
+        main <br />
+        main <br />
+        main <br />
+        main <br />
+      </div>
+      <div style="margin-top: auto; height: 50px">footer</div>
+    </div>
+
+    <script>
+      //         div本身的大小是100，结果被放大了，和css3中的缩放有有较的却别之一：放大 缩小多少倍，就占据多大的dom空间；
+
+      // css中的缩放，占据的依然是元素本身设置的width 和 height 属性滴呀
+
+      //       大部分的 IE 显示错误，都可以通过激发元素的 haslayout 属性来修正。可以通过设置 css 尺寸属性(width/height)等来激发元素的 haslayout，使其“拥有布局”。如下所示，通过设置以下 css 属性即可。
+      // * display: inline-block
+      // * height: (任何值除了auto)
+      // * float: (left 或 right)
+      // * position: absolute
+      // * width: (任何值除了auto)
+      // * writing-mode: tb-rl
+      // * zoom: (除 normal 外任意值)
+      // Internet Explorer 7 还有一些额外的属性(不完全列表):
+      // * min-height: (任意值)
+      // * max-height: (除 none 外任意值)
+      // * min-width: (任意值)
+      // * max-width: (除 none 外任意值)
+      // * overflow: (除 visible 外任意值)
+      // * overflow-x: (除 visible 外任意值)
+      // * overflow-y: (除 visible 外任意值)
+      // * position: fixed
+      //   建议首先要考虑的是设定元素的width/height 属性，其次再考虑其他属性。
+      //   需要注意的是，hasLayout属性是微软特有的过时属性，在IE8、IE9中，hasLayout属性已经被废弃。上文中的InternetExplorer都是指IE7、IE6及以下版本。
+
+      //       圣杯布局
+      // ① 特点
+      // 比较特殊的三栏布局，同样也是两边固定宽度，中间自适应，唯一区别是dom结构必须是先写中间列部分，这样实现中间列可以优先加载。
+      //   center部分的最小宽度不能小于left部分的宽度，否则会left部分掉到下一行
+      // 如果其中一列内容高度拉长(如下图)，其他两列的背景并不会自动填充。
+
+      //英文转行  word-break:break-all
+
+      //       两种布局方式都是把主列放在文档流最前面，使主列优先加载。
+      // 两种布局方式在实现上也有相同之处，都是让三列浮动，然后通过负外边距形成三列布局。
+      // 两种布局方式的不同之处在于如何处理中间主列的位置：
+      // 圣杯布局是利用父容器的左、右内边距+两个从列相对定位；
+      // 双飞翼布局是把主列嵌套在一个新的父级块中利用主列的左、右外边距进行布局调整
+    </script>
+  </body>
+</html>

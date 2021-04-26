@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+      }
+      .button {
+        width: 50px;
+        height: 20px;
+        background-color: blue;
+        color: #fff;
+        transition-property: all;
+        transition-duration: 3s;
+        transition-timing-function: linear;
+        transition-delay: 0.3s;
+      }
+      .button:hover {
+        color: blue;
+        background-color: #fff;
+      }
+      .fllil {
+        display: flex;
+      }
+      .demo-ul {
+        margin-bottom: 300px;
+      }
+      .demo-ul li {
+        padding: 0 10px;
+        width: 100px;
+        background: #f90;
+        position: relative;
+      }
+      .demo-ul li a {
+        display: block;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+      }
+      .demo-ul li ul {
+        position: absolute;
+        width: 100%;
+        top: 40px;
+        left: 0;
+        transform: scaleY(0);
+        overflow: hidden;
+      }
+      .ul-transition ul {
+        transform-origin: 0 0;
+        transition: all 0.5s;
+      }
+      .demo-ul li:hover ul {
+        transform: scaleY(1);
+      }
+      .demo-ul li ul li {
+        float: none;
+        background: #0099ff;
+      }
+
+      .rotate {
+        width: 50px;
+        height: 50px;
+        margin: 0 auto;
+        transform: rotateX(180deg);
+        /* 不会影响其他元素，所占位置大小不变 */
+        transform-origin: 0 0;
+        /* 默认50% 50%  中心点 */
+        background-color: blue;
+      }
+
+      .shadow {
+        width: 50px;
+        height: 50px;
+        margin: 0 auto;
+        background-color: red;
+        box-shadow: 10px 10px 5px #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="demo-hover demo-ul t_c">
+      <ul class="fllil">
+        <li>
+          <a href="javascript:;">html</a>
+          <ul>
+            <li><a href="#">div</a></li>
+            <li><a href="#">h1</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:;">js</a>
+          <ul>
+            <li><a href="#">string</a></li>
+            <li><a href="#">array</a></li>
+            <li><a href="#">object</a></li>
+            <li><a href="#">number</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:;">css3</a>
+          <ul>
+            <li><a href="#">transition</a></li>
+            <li><a href="#">animation</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:;">框架</a>
+          <ul>
+            <li><a href="#">vue</a></li>
+            <li><a href="#">react</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="clear"></div>
+    </div>
+    <div class="demo-hover demo-ul ul-transition t_c">
+      <ul class="fllil">
+        <li>
+          <a href="javascript:;">html</a>
+          <ul>
+            <li><a href="#">div</a></li>
+            <li><a href="#">h1</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:;">js</a>
+          <ul>
+            <li><a href="#">string</a></li>
+            <li><a href="#">array</a></li>
+            <li><a href="#">object</a></li>
+            <li><a href="#">number</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:;">css3</a>
+          <ul>
+            <li><a href="#">transition</a></li>
+            <li><a href="#">animation</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="javascript:;">框架</a>
+          <ul>
+            <li><a href="#">vue</a></li>
+            <li><a href="#">react</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="clear"></div>
+    </div>
+
+    <div class="rotate">123</div>
+
+    <div class="shadow"></div>
+    <script>
+      // 未知高度，使用css过渡， transform: scaleY(0); max-height； js获取高度
+
+      // animation: logo2-line 2s linear 2s;
+      // 执行logo2动画 每次晚安需要两秒 运动曲线 延迟时间
+
+      // animation-fill-mode : none | forwards | backwards | both;
+      /*none：不改变默认行为。    
+      forwards ：当动画完成后，保持最后一个属性值（在最后一个关键帧中定义）。    
+      backwards：在 animation-delay 所指定的一段时间内，在动画显示之前，应用开始属性值（在第一个关键帧中定义）。 
+      both：向前和向后填充模式都被应用。  */
+
+      //   transform-origin   转换的基准点
+      //   transform:rotateX(180deg);上下反转
+      //  transform:rotateY(180deg);左右反转
+
+      // box-shadow: 水平阴影的位置 正数为右 垂直阴影的位置 正数为下 模糊距离 阴影的大小 阴影的颜色 阴影开始方向（默认是从里往外，设置inset就是从外往里）;
+
+    //   border: 15px solid transparent;
+    // border-image: url(border.png);边框的图片的路径。
+    // border-image-slice: 30;图片边框向内偏移。
+      // border-image-outset: 0;边框图像区域超出边框的量。
+    // border-image-repeat: round;图像边框是否应平铺(repeated)、铺满(rounded)或拉伸(stretched)。
+
+    // border-radius:25px 0 25px 0;边框圆角
+    </script>
+  </body>
+</html>
