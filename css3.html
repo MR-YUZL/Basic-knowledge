@@ -82,6 +82,71 @@
         background-color: red;
         box-shadow: 10px 10px 5px #333;
       }
+
+      .background-clip {
+        width: 50px;
+        height: 50px;
+        margin: 0 auto;
+        border: 5px dashed blue;
+        padding: 10px;
+        background-color: #000;
+        background-clip: content-box;
+      }
+
+      .background-origin {
+        width: 500px;
+        height: 300px;
+        margin: 0 auto;
+        border: 5px dashed blue;
+        padding: 10px;
+        background-image: url(./1.png);
+        background-origin: padding-box;
+      }
+
+      .background-img2 {
+        width: 100%;
+        height: 100px;
+        /* background-image: url(./1.png), url(./2.jpg);
+        background-repeat: no-repeat, no-repeat;
+        background-size: contain, contain;
+        background-position: right, left; */
+
+        background: url("./1.png") no-repeat left, url(./2.jpg) no-repeat right;
+        background-size: contain;
+        /* 详细属性需要写在下面 */
+      }
+
+      .background-img {
+        overflow: hidden;
+        padding-bottom: 100px;
+      }
+      .reflect-bottom {
+        -webkit-box-reflect: below;
+        /* // 倒影 */
+      }
+      .text {
+        width: 30px;
+        border: 1px solid #000;
+        color: #fff;
+        background-color: #000;
+      }
+
+      .ellipsis {
+        width: 400px;
+        margin: 0 auto;
+        overflow: hidden;
+        border: 1px solid #ccc;
+        text-overflow: ellipsis;
+        padding: 0 10px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        line-height: 30px;
+        height: 60px;
+      }
+      .show {
+        background-color: rgba(0, 0, 0, 0);
+      }
     </style>
   </head>
   <body>
@@ -159,6 +224,19 @@
     <div class="rotate">123</div>
 
     <div class="shadow"></div>
+
+    <div class="background-clip"></div>
+
+    <div class="background-origin"></div>
+
+    <div class="background-img2"></div>
+
+    <div class="background-img">
+      <img src="./1.png" alt="" class="reflect-bottom" />
+    </div>
+
+    <div class="text show">jhgsajdgjsadgjsagjdgsajgasjdgsajgjdas</div>
+
     <script>
       // 未知高度，使用css过渡， transform: scaleY(0); max-height； js获取高度
 
@@ -177,13 +255,51 @@
 
       // box-shadow: 水平阴影的位置 正数为右 垂直阴影的位置 正数为下 模糊距离 阴影的大小 阴影的颜色 阴影开始方向（默认是从里往外，设置inset就是从外往里）;
 
-    //   border: 15px solid transparent;
-    // border-image: url(border.png);边框的图片的路径。
-    // border-image-slice: 30;图片边框向内偏移。
+      //   border: 15px solid transparent;
+      // border-image: url(border.png);边框的图片的路径。
+      // border-image-slice: 30;图片边框向内偏移。
       // border-image-outset: 0;边框图像区域超出边框的量。
-    // border-image-repeat: round;图像边框是否应平铺(repeated)、铺满(rounded)或拉伸(stretched)。
+      // border-image-repeat: round;图像边框是否应平铺(repeated)、铺满(rounded)或拉伸(stretched)。
 
-    // border-radius:25px 0 25px 0;边框圆角
+      // border-radius:25px 0 25px 0;边框圆角
+
+      // background-clip制定背景绘制（显示）区域
+      // 默认border-box 全显示   padding-box 将border哪里裁掉  content-box 只在内容区显示
+
+      //   background-Origin属性指定background-position属性应该是相对位置
+      // border-box 从边框处开始渲染   padding-box 从padding外边缘处渲染  content-box 内容区渲染
+
+      // background-repeat  默认 背景将在垂直水平方向重复
+      // repeat-x repeat-y no-repeat
+
+      // background-size
+      // cover默认 保持横纵比，缩放至以最小大小完全覆盖背景
+      // contain 保持横纵比，缩放至以最大大小完全覆盖背景
+      // 横 纵
+
+      // word-break: normal|break-all|keep-all;
+      //normal 默认根据单词   break-all 允许单词内换行
+      // text-overflow  ellipsis
+
+      // text-shadow 文字阴影  text-shadow: 0 0 10px #f00;
+
+      // display、visibility、opacity 后两个可以用transition
+      // 1 opacity=0，该元素隐藏起来了，但不会改变页面布局，并且，如果该元素已经绑定一些事件，如click事件，那么点击该区域，也能触发点击事件的
+      // 2 visibility=hidden，该元素隐藏起来了，但不会改变页面布局，但是不会触发该元素已经绑定的事件
+      // 3 display=none，把元素隐藏起来，并且会改变页面布局，可以理解成在页面中把该元素删除掉一样
+      //       父元素设置了visibility:hidden或者opacity：0之后，虽然它们的位置被保留，但是由于子代是会继承下来，因此子代在页面上也不会显示。也就是说，父代设置了这两个属性之后，子代也会有相应的效果。
+
+      //  但是只有当父元素设置了visibility属性后子元素能通过visibility:visible显示出来，也就是反继承。
+
+      // hsla( 49, 65%, 60%, 0.68); 色相 饱和度 亮度 透明度
+
+      // linear-gradient  起点 终点  起点颜色 终点颜色
+
+      // <img src="test.jpg" style="filter:sepia(1);"/> filter 滤镜
+
+      // flex
+      // grid
+      // 媒体查询@media
     </script>
   </body>
 </html>
