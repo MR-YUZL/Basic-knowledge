@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body>
+  <body onload="handleClick()">
     <div id="1">
       啊啊啊
       <div id="2">按钮</div>
     </div>
+
+    <div onclick="handleClick()">哈哈哈哈</div>
     <script>
       document.getElementById("1").addEventListener(
         "click",
@@ -22,17 +24,31 @@
         },
         false
       );
-      document.getElementById("2").addEventListener(
-        "click",
-        () => {
-          console.log("2");
-        },
-        { capture: false, once: true }
-      );
+
+      let a = document.getElementById("2");
+      function onClick(e) {
+        console.log(e, this);
+      }
+      a.addEventListener("click", onClick, { capture: false, once: false });
+      // a.removeEventListener("click", onClick, {
+      //   capture: false,
+      //   once: false,
+      // });
+
+      a.dispatchEvent(new Event("click"));
+      // a.onclick = function () {};
+
+      const b = document.createElement("a");
+      b.innerText = "哈哈哈哈kkk";
+      document.body.appendChild(b);
+
+      function handleClick() {
+        console.log(this);
+      }
       // 1   2
       // dom事件的操作，监听和触发都定义在eventTarget接口
       // addEventListener 绑定事件监听函数
-      // removeEventListener 移除事件监听函数
+      // removeEventListener 移除事件监听函数 不能用匿名函数
       // dispatchEvent 触发函数
 
       //   EventTarget.addEventListener()用于在当前节点或对象上，定义一个特定事件的监听函数。一旦这个事件发生，就会执行监听函数。该方法没有返回值。
@@ -45,7 +61,33 @@
       // once：布尔值，表示监听函数是否只触发一次，然后就自动移除。
       // passive：布尔值，表示监听函数不会调用事件的preventDefault方法。如果监听函数调用了，浏览器将忽略这个要求，并在监控台输出一行警告。
 
-      
+      // addEventListener方法可以为针对当前对象的同一个事件，添加多个不同的监听函数。这些函数按照添加顺序触发，
+      // 即先添加先触发。如果为同一个事件多次添加同一个监听函数，该函数只会执行一次，多余的添加将自动被去除
+      // 监听函数内部的this，指向当前事件所在的那个对象。
+
+      // EventTarget.dispatchEvent方法在当前节点上触发指定事件，从而触发监听函数的执行。
+      // 该方法返回一个布尔值，只要有一个监听函数调用了Event.preventDefault()，则返回值为false，否则为true。
+      // dispatchEvent方法的参数是一个Event对象的实例
+
+      // JavaScript 有三种方法，可以为事件绑定监听函数。
+
+      // 元素的事件监听属性，都是on加上事件名，比如onload就是on + load，表示load事件的监听代码。
+      // 使用这个方法指定的监听代码，只会在冒泡阶段触发。
+      // 直接设置on-属性，与通过元素节点的setAttribute方法设置on-属性
+      // el.setAttribute('onclick', 'doSomething()');
+      // 等同于
+      // <Element onclick="doSomething()">
+
+      // window.onload = doSomething;
+      // window.addEventListener('load', doSomething, false);
+
+      //         第一种“HTML 的 on- 属性”，违反了 HTML 与 JavaScript 代码相分离的原则，将两者写在一起，不利于代码分工，因此不推荐使用。
+
+      // 第二种“元素节点的事件属性”的缺点在于，同一个事件只能定义一个监听函数，也就是说，如果定义两次onclick属性，后一次定义会覆盖前一次。因此，也不推荐使用。
+
+      // 同一个事件可以添加多个监听函数。
+      // 能够指定在哪个阶段（捕获阶段还是冒泡阶段）触发监听函数。
+      // 除了 DOM 节点，其他对象（比如window、XMLHttpRequest等）也有这个接口，它等于是整个 JavaScript 统一的监听函数接口。
     </script>
   </body>
 </html>
