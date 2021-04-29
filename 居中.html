@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 300px;
+        height: 300px;
+        background-color: #ccc;
+        /* display: flex;
+        justify-content: center;
+        align-items: center; */
+
+        position: relative;
+      }
+      .box .a {
+        /* position: absolute;
+        left: 50%;
+        top: 50%; */
+        /* margin: -50px 0 0 -50px; */
+        /* transform: translate(-50%, -50%); */
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+        margin: auto;
+      }
+
+      .box1 {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+        /* display: table-cell;
+        text-align: center;
+        vertical-align: middle; */
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        /* 给父级设置 display : table，子集设置 display：tablecell ，子集会充满全屏 */
+      }
+
+      .box2 {
+        display: table-cell;
+        width: 300px;
+        height: 300px;
+        vertical-align: middle;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="box">
+      <div class="a">asdasd</div>
+    </div> -->
+
+    <div class="box2">
+      <img src="./2.jpg" alt="" />
+    </div>
+    <script>
+      // flex居中适用于内部只有一个元素
+
+      //   position:absolute  上下左右0 若不舍宽高 将铺满父级
+
+      // 内容居中 margin 0 auto  text-align center  line-height
+
+      //   img垂直居中   table
+    </script>
+  </body>
+</html>

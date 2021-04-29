@@ -35,11 +35,11 @@
         /* 因为p.a、p.b、p.c三个的父元素div都没有设置z-index，所以不会产生层叠上下文，所以.a、.b、.c都处于由<html></html>标签产生的“根层叠上下文”中，属于同一个层叠上下文，此时谁的z-index值大，谁在上面。 */
       }
 
-      div {
+      /* div {
         width: 100px;
         height: 100px;
         position: relative;
-      }
+      } */
       .box1 {
         z-index: 2;
       }
@@ -68,6 +68,99 @@
         left: 40px;
         z-index: 9999;
       }
+
+      .box3 {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+        overflow: hidden;
+        position: relative;
+        z-index: 0;
+      }
+      .d {
+        width: 50px;
+        height: 50px;
+        background-color: red;
+        float: left;
+      }
+      .e {
+        width: 50px;
+        height: 50px;
+        background-color: #000;
+        position: absolute;
+        left: 20px;
+        z-index: 0;
+      }
+
+      .box4 {
+        display: inline-flex;
+        justify-content: space-between;
+      }
+
+      .box5 {
+        display: flex;
+      }
+      .parent {
+        width: 200px;
+        height: 100px;
+        background: #168bf5;
+        /* 虽然设置了z-index，但是没有设置position，z-index无效，.parent还是普通元素，没有产生层叠上下文 */
+        z-index: 1;
+      }
+      .child {
+        width: 100px;
+        height: 200px;
+        background: #32d19c;
+        position: relative;
+        z-index: -1;
+        /* 层叠上下文在一层时，-1小于块级元素 */
+      }
+
+      .parents {
+        width: 100px;
+        height: 200px;
+        background: #168bf5;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+      }
+      .child1 {
+        width: 100px; 
+        height: 200px;
+        background: #32d19c;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 1;
+      }
+      .child2 {
+        width: 100px;
+        height: 200px;
+        background: #e4c950;
+        position: absolute;
+        top: 40px;
+        left: 40px;
+        z-index: -1;
+      }
+      .child2-1 {
+        width: 100px;
+        height: 200px;
+        background: #e45050;
+        position: absolute;
+        top: 60px;
+        left: 60px;
+        z-index: 9999;
+      }
+      .child2-2 {
+        width: 100px;
+        height: 200px;
+        background: #db68a7;
+        position: absolute;
+        top: 80px;
+        left: 40px;
+        z-index: -9999;
+      }
     </style>
   </head>
   <body>
@@ -78,7 +171,7 @@
       <p class="a">a</p>
       <p class="b">b</p>
     </div> -->
-
+    <!-- 
     <div class="box1">
       <p class="a">a</p>
       <p class="b">b</p>
@@ -86,6 +179,31 @@
 
     <div class="box2">
       <p class="c">c</p>
+    </div> -->
+
+    <!-- <div class="box3">
+      <p class="e"></p>
+      <p class="d"></p>
+    </div> -->
+
+    <!-- <div class="box4">
+      <span class="left">1</span>
+      <span class="right">2</span>
+    </div> -->
+
+    <!-- <div class="box5">
+      <div class="parent">parent</div>
+    </div>
+    <div class="child">child</div> -->
+    
+    <div class="parents">
+      parent
+      <div class="child1">child1</div>
+      <div class="child2">
+        child2
+        <div class="child2-1">child2-1</div>
+        <div class="child2-2">child2-2</div>
+      </div>
     </div>
 
     <script>
@@ -105,9 +223,28 @@
       // 普通元素设置position属性为非static值并设置z-index属性为具体数值，产生层叠上下文。
       // CSS3中的新属性也可以产生层叠上下文。
 
-    // 前面所说的“层叠上下文”和“层叠等级”是一种概念，而这里的“层叠顺序”是一种规则。
+      // 前面所说的“层叠上下文”和“层叠等级”是一种概念，而这里的“层叠顺序”是一种规则。
 
-    
+      //   层叠上下文元素背景边框 《 z-index 《0  《 块级水平盒子 《 float浮动盒子 《 inline-block/inline盒子 《 z-index：auto/z-index = 0 + 不依赖z-index的层叠上下文 《 z-index 》 0
+
+      //一般创建层叠上下文用的是 position：relative z-index：0  而不是 position：absolute
+
+      //       首先先看要比较的两个元素是否处于同一个层叠上下文中：
+      //       1.1如果是，谁的层叠等级大，谁在上面（怎么判断层叠等级大小呢？——看“层叠顺序”图）。
+      //       1.2如果两个元素不在统一层叠上下文中，请先比较他们所处的层叠上下文的层叠等级。
+      // 2、当两个元素层叠等级相同、层叠顺序相同时，在DOM结构中后面的元素层叠等级在前面元素之上。
+
+      //   z-index auto  不会产生层叠上下文
+
+      //孩子的层叠关系，要先看是否处于相同的层叠上下文，如果不在，去对比上一级的层叠关系
+
+      //css3中很多属性，也会对层叠上下文产生影响
+
+      // display flex/inline-flex时 z-index不为auto   子元素为层叠上下文元素
+      //   元素的opacity属性值不是1；
+      // 元素的transform属性值不是none；
+
+    //   因为IE6/IE7 position:relative会创建层叠上下文，很烦的。
     </script>
   </body>
 </html>

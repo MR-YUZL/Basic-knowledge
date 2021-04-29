@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="1">
+      啊啊啊
+      <div id="2">按钮</div>
+    </div>
+    <script>
+      document.getElementById("1").addEventListener(
+        "click",
+        {
+          handleEvent: (event) => {
+            console.log("1", event);
+            // 获取点击对象
+          },
+        },
+        false
+      );
+      document.getElementById("2").addEventListener(
+        "click",
+        () => {
+          console.log("2");
+        },
+        { capture: false, once: true }
+      );
+      // 1   2
+      // dom事件的操作，监听和触发都定义在eventTarget接口
+      // addEventListener 绑定事件监听函数
+      // removeEventListener 移除事件监听函数
+      // dispatchEvent 触发函数
+
+      //   EventTarget.addEventListener()用于在当前节点或对象上，定义一个特定事件的监听函数。一旦这个事件发生，就会执行监听函数。该方法没有返回值。
+
+      // target.addEventListener(type,listener[,useCapture])
+      // type 事件名称  listener 监听函数 useCapture 表示函数是否在捕获阶段触发 默认false（冒泡时触发）
+
+      //   第三个参数除了布尔值useCapture，还可以是一个属性配置对象
+      //     capture：布尔值，表示该事件是否在捕获阶段触发监听函数。
+      // once：布尔值，表示监听函数是否只触发一次，然后就自动移除。
+      // passive：布尔值，表示监听函数不会调用事件的preventDefault方法。如果监听函数调用了，浏览器将忽略这个要求，并在监控台输出一行警告。
+
+      
+    </script>
+  </body>
+</html>

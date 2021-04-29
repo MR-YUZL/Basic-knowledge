@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      window.location.hash = "abc";
+      let hash = window.location.hash; //'#abc'
+
+      window.addEventListener("hashchange", function () {
+        //监听hash变化，点击浏览器的前进后退会触发
+        console.log(window.history);
+      });
+
+      history.pushState(
+        { a: 3 },
+        "",
+        "file:///C:/Users/q/Desktop/project/demo/Basic-knowledge/%E8%B7%AF%E7%94%B1.html#abc1"
+      );
+
+      //   现在的网络应用程序越来越多的使用AJAX异步请求完成页面的无缝刷新，导致浏览器的URL不会发生任何变化而完成了请求，从而破坏了用户浏览体验。同时本次浏览的页面内容在用户下次使用URL访问时将无法重新呈现，使用路由可以很好地解决这个问题。
+
+      //     路由需要实现三个功能：
+
+      // 当浏览器地址变化时，切换页面；
+      // 点击浏览器【后退】、【前进】按钮，网页内容跟随变化；
+      // 刷新浏览器，网页加载当前路由对应内容；
+
+      //         我们的路由主要是通过监听事件，并利用js实现动态改变网页内容，有两种实现方式：
+
+      //   hash模式：监听浏览器地址hash值变化，执行相应的js切换网页；
+      //   history模式：利用history API实现url地址改变，网页内容改变；
+      //   它们的区别最明显的就是hash会在浏览器地址后面增加#号，而history可以自定义地址。
+
+      //   hash指的是地址中#号以及后面的字符，也称为散列值。hash也称作锚点，本身是用来做页面跳转定位的。如http://localhost/index.html#abc，这里的#abc就是hash；
+
+      //     散列值是不会随请求发送到服务器端的，所以改变hash，不会重新加载页面；
+      // 监听 window 的 hashchange 事件，当散列值改变时，可以通过 location.hash 来获取和设置hash值；此时根据获取的hash值来触发js去找对应的页面内容
+      // location.hash值的变化会直接反应到浏览器地址栏；
+
+      //   触发hashChange的方式
+      // 浏览器前进后退，在浏览器URL中输入带hash的地址，或是在URL中直接修改hash，之后按下回车
+      // 点击a标签
+
+      //     window.history 属性指向 History 对象，它表示当前窗口的浏览历史。当发生改变时，只会改变页面的路径，不会刷新页面。
+      // History 对象保存了当前窗口访问过的所有页面网址。通过 history.length 可以得出当前窗口一共访问过几个网址。
+      // 由于安全原因，浏览器不允许脚本读取这些地址，但是允许在地址之间导航。
+      // 浏览器工具栏的“前进”和“后退”按钮，其实就是对 History 对象进行操作。
+
+      //   History 对象主要有两个属性。
+      //   // 当前窗口访问过多少个网页
+      //   history.length // 1
+
+      //   // History 对象的当前状态
+      //   // 通常是 undefined，即未设置
+      //   history.state // undefined
+
+      //     history.back();
+      // history.forward();
+      // history.go(1);//相当于history.forward()
+      // history.go(-1);//相当于history.back()
+      // history.go(0); // 刷新当前页面
+      //   注意：移动到以前访问过的页面时，页面通常是从浏览器缓存之中加载，而不是重新要求服务器发送新的网页。
+
+    // history.pushState(data, '', '2.html'); history.state  该方法用于在历史中添加一条记录。pushState()方法不会触发页面刷新，只是导致 History 对象发生变化，地址栏会有变化。
+
+    // History.replaceState() 来修改 History 对象的当前记录，用法与 pushState() 方法一样。
+    </script>
+  </body>
+</html>
