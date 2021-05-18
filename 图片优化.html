@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .padding {
+        padding: 10px;
+        height: 200px;
+        overflow: auto;
+      }
+      .border {
+        border: 1px solid #000;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container" class="border padding"></div>
+    <script>
+      const c = document.getElementById("container");
+
+      for (let index = 0; index < 5; index++) {
+        const i = document.createElement("img"); //需要每次创建新的才能添加进去
+        i.dataset.src = "./1.png";
+        // i.src = "./1.png";
+        c.appendChild(i);
+      }
+      //延迟加载  降低图片大小
+      console.log("c", c.clientWidth, c.offsetWidth, window.innerWidth);
+
+      const inView = (el) => {
+        const rect = el.getBoundingClientRect();
+
+        return (
+          rect.top >= 0 && rect.left >= 0 && rect.right <= window.innerWidth
+        );
+      };
+
+      //   clientWidth 不带边框 带padding  数字类型
+      //offsetWith 带边框 带padding  数字类型  需要等元素渲染完成
+      // innerWith
+
+      // :data-src="v.url" 设置属性  位置出现在视口中在渲染 dataset.src 前提是已经知道了列表
+      c.addEventListener("scroll", () => {
+        showView();
+      });
+
+      function showView() {
+        console.log("ok");
+        const i = [...c.getElementsByTagName("img")];
+
+        for (let index = 0; index < i.length; index++) {
+          if (inView(i[index])) {
+            i[index].src = i[index].dataset.src;
+            i.splice(index, 1);
+            index--;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
