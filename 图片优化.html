@@ -7,11 +7,15 @@
     <style>
       .padding {
         padding: 10px;
-        height: 200px;
-        overflow: auto;
       }
       .border {
         border: 1px solid #000;
+      }
+      .lazy-img {
+        display: block;
+        width: 200px;
+        height: 300px;
+        background-color: #000;
       }
     </style>
   </head>
@@ -20,44 +24,82 @@
     <script>
       const c = document.getElementById("container");
 
+      const io = new IntersectionObserver((ioes) => {
+        ioes.forEach((ioe) => {
+          const el = ioe.target;
+          const intersectionRatio = ioe.intersectionRatio;
+          // intersectionRatio来判断是否在可视区域内，当intersectionRatio > 0 && intersectionRatio <= 1即在可视区域内。
+          if (intersectionRatio > 0 && intersectionRatio <= 1) {
+            ioe.target.src = ioe.target.dataset.src;
+            ioe.target.classList.remove("lazy-img");
+            io.unobserve(el)
+          }
+          // el.onload = el.onerror = () => io.unobserve(el);
+        });
+      });
+
       for (let index = 0; index < 5; index++) {
         const i = document.createElement("img"); //需要每次创建新的才能添加进去
         i.dataset.src = "./1.png";
-        // i.src = "./1.png";
+        i.classList.add("lazy-img");
         c.appendChild(i);
+        io.observe(i);
       }
       //延迟加载  降低图片大小
-      console.log("c", c.clientWidth, c.offsetWidth, window.innerWidth);
+      // console.log("c", c.clientWidth, c.offsetWidth, window.innerWidth);
 
-      const inView = (el) => {
-        const rect = el.getBoundingClientRect();
+      // const inView = (el) => {
+      //   const rect = el.getBoundingClientRect();
+      //   return (
+      //     rect.top >= 0 && rect.left >= 0 && rect.right <= window.innerWidth
+      //   );
+      // };
 
-        return (
-          rect.top >= 0 && rect.left >= 0 && rect.right <= window.innerWidth
-        );
-      };
+      window.addEventListener(
+        "click",
+        function () {
+          console.log("window addEventListener：捕获优先3");
+        },
+        false
+      );
+      // window代表全局对象
 
+      document.addEventListener(
+        "click",
+        function () {
+          console.log("document addEventListener：冒泡优先2");
+          // 优先于window
+        },
+        false
+      );
+
+      // document是window下的变量，是每个载入浏览器的html文档
+      // 有iframe的时候会创建子级的window
       //   clientWidth 不带边框 带padding  数字类型
       //offsetWith 带边框 带padding  数字类型  需要等元素渲染完成
-      // innerWith
+      // innerWith 视口的宽度
 
+      //       通过document.documentElement.clientHeight获取屏幕可视窗口高度
+      // 通过element.offsetTop获取元素相对于文档顶部的距离
+      // 通过document.documentElement.scrollTop获取浏览器窗口顶部与文档顶部之间的距离，也就是滚动条滚动的距离
+
+      // showView();
       // :data-src="v.url" 设置属性  位置出现在视口中在渲染 dataset.src 前提是已经知道了列表
-      c.addEventListener("scroll", () => {
-        showView();
-      });
+      // document.addEventListener("scroll", () => {
+      //   showView();
+      // });
 
-      function showView() {
-        console.log("ok");
-        const i = [...c.getElementsByTagName("img")];
+      // function showView() {
+      //   const i = [...c.getElementsByTagName("img")];
 
-        for (let index = 0; index < i.length; index++) {
-          if (inView(i[index])) {
-            i[index].src = i[index].dataset.src;
-            i.splice(index, 1);
-            index--;
-          }
-        }
-      }
+      //   for (let index = 0; index < i.length; index++) {
+      //     if (inView(i[index])) {
+      //       i[index].src = i[index].dataset.src;
+      //       i.splice(index, 1);
+      //       index--;
+      //     }
+      //   }
+      // }
     </script>
   </body>
 </html>
