@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .fixed {
+        position: fixed;
+        width: 100px;
+        height: 120px;
+        background-color: blue;
+      }
+      .transform {
+        width: 120px;
+        height: 100px;
+        background-color: brown;
+        transform: scale(1.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="transform"></div>
+    <div class="fixed"></div>
+
+    <!-- <div style="flex-">
+      <span>123</span>
+      <span style="margin-bottom: 20px">111</span>
+    </div> -->
+    <script>
+      //         精简DOM，合理布局
+      // 使用transform代替left、top减少使用引起页面重排的属性
+      // 开启硬件加速
+      // 尽量避免浏览器创建不必要的图形层
+      // 尽量减少js动画，如需要，使用对性能友好的requestAnimationFrame
+      // 使用chrome performance工具调试动画性能
+
+      //   生成布局（flow，重排） 绘制（paint，重绘）
+
+      // 尽量避免使用table布局，table在更改了一个元素会引起所有的重排
+
+      // dom元素读写分离
+      // 让进行大量动画的元素脱离文档流，减少重排开销
+      // 改变元素的class，一次性更改样式
+      // 使用css3 transform优化动画性能
+
+      //       div { height: 100px; transition: height 1s linear; }
+
+      // div:hover { height: 200px; }
+      //   位图 = 点阵图  由像素点组成
+      //   height每次向上增长时，都会将位图重新加载到内存，而gpu在
+      //     绘制位图到屏幕上
+      // 可不断的绘制相同的位图
+      // 将同一位图进行位移、旋转、缩放
+      // 很快
+      // 因为每一帧的变化浏览器都在进行布局、绘制、把新的位图交给 GPU 内存，但是在将位图加载到GPU内存中的操作是个相对耗时的操作。
+
+      // div { transform: scale(0.5); transition: transform 1s linear; }
+
+      // div:hover { transform: scale(1.0); }
+
+      //       提升为合成层简单说来有以下几点好处
+
+      // 合成层的位图，会交由 GPU 合成，比 CPU 处理要快
+      // 当需要 repaint 时，只需要 repaint 本身，不会影响到其他的层
+      // 对于 transform 和 opacity 效果，不会触发 layout 和 paint
+      // 合成层的好处是不会影响到其他元素的绘制，因此，为了减少动画元素对其他元素的影响，从而减少 paint，我们需要把动画效果中的元素提升为合成层。
+
+      // will-change  transofrm: translateZ(0)
+      // window.requestAnimationFrame() 方法。它可以将某些代码放到下一次重新渲染时执行。
+
+      //       1. offsetTop, offsetLeft, offsetWidth, offsetHeight
+
+      //   2. scrollTop/Left/Width/Height
+
+      //   3. clientTop/Left/Width/Height
+
+      //   4. width,height
+
+      //   5. 请求了getComputedStyle(), 或者 IE的 currentStyle
+
+      //   当你请求上面的一些属性的时候，浏览器为了给你最精确的值，需要flush队列，因为队列中可能会有影响到这些值的操作。即使你获取元素的布局和样式信息跟最近发生或改变的布局信息无关，浏览器都会强行刷新渲染队列。
+    </script>
+  </body>
+</html>

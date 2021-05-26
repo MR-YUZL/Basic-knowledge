@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const o = { a: "1" };
+      const s = "str";
+      const s1 = new String("str");
+      console.log(o.valueOf());
+      console.log(typeof o.toString());
+      console.log(o.toLocaleString());
+
+      console.log(s1 === s);
+      console.log(s1.valueOf() === s);
+
+      console.log(JSON.stringify(o));
+
+      console.log(o.toString() === JSON.stringify(o));
+
+      //   const a = Array.from({ length: 3 }, (v) => {
+      //     return {
+      //       x: [],
+      //       y1: [],
+      //       y2: [],
+      //       y3: [],
+      //     };
+      //   });
+
+      //   a[0].x = [1, 2, 3];
+      //   console.log("a", a);
+
+      async function a() {
+        let bb = "1";
+        let aa = await b();
+        return aa;
+      }
+
+      const func = a();
+
+      function b() {
+        // const fun = await a();
+        // console.log("fun", fun);
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            b = "2";
+            resolve(b);
+          }, 1000);
+        });
+      }
+      console.log("func", func);
+      //   b()
+    </script>
+  </body>
+</html>

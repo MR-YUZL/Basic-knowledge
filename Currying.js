@@ -114,3 +114,9 @@ foo(1, 2, 3);
 // var curry = (fn) =>
 //   (judge = (...args) =>
 //     args.length === fn.length ? fn(...args) : (arg) => judge(...args, arg));
+
+// const curry = (fn, ...args) => {
+//   return args.length >= fn.length
+//     ? fn(...args)
+//     : (..._args) => curry(fn, ..._args, ...args);
+// };
