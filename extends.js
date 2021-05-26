@@ -49,7 +49,7 @@
 //方法都在构造函数中定义，每次创建实例都会创建一遍方法。  call创建一次，new创建一次
 
 //原型式继承
-// function creatObj(o) {
+// function creatObj(o) {  //Object.create 的模拟实现
 //   function F() {}
 //   F.prototype = o;
 //   return new F();

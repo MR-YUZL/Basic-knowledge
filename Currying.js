@@ -41,7 +41,7 @@
 
 // var addCurry = curry(add);
 
-// console.log(addCurry(1, 2));
+// console.log(addCurry(1)(2));
 // console.log(add);
 
 // function sub_curry(fn) {
@@ -66,35 +66,35 @@
 //   };
 // }
 
-function curry(fn, args) {
-  var length = fn.length;
-  args = args || [];
+// function curry(fn, args) {
+//   var length = fn.length;
+//   args = args || [];
 
-  return function () {
-    var _args = [...args],
-      i,
-      arg;
-    for (i = 0; i < arguments.length; i++) {
-      arg = arguments[i];
-      _args.push(arg);
-    }
+//   return function () {
+//     var _args = [...args],
+//       i,
+//       arg;
+//     for (i = 0; i < arguments.length; i++) {
+//       arg = arguments[i];
+//       _args.push(arg);
+//     }
 
-    if (_args.length < length) {
-      return curry.call(this, fn, _args);
-    } else {
-      return fn.apply(this, _args);
-    }
-  };
-}
+//     if (_args.length < length) {
+//       return curry.call(this, fn, _args);
+//     } else {
+//       return fn.apply(this, _args);
+//     }
+//   };
+// }
 
-var fn = curry(function (a, b, c) {
-  return [a, b, c];
-});
+// var fn = curry(function (a, b, c) {
+//   return [a, b, c];
+// });
 
-console.log(fn("a", "b", "c"));
-console.log(fn("a")("b", "c"));
-console.log(fn("a", "b")("c")); //_占位符
-console.log(fn("a")("b")("c"));
+// console.log(fn("a", "b", "c"));
+// console.log(fn("a")("b", "c"));
+// console.log(fn("a", "b")("c")); //_占位符
+// console.log(fn("a")("b")("c"));
 
 //以最后一个为例
 // function fn2(a) {
