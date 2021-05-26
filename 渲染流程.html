@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 输入URL之后
+      // DNS查询解析
+      // TCP连接
+      // HTTP请求
+      // 服务器响应
+      // 客户端渲染
+      //         解析html建立dom树
+      // 解析css构建render树（将CSS代码解析成树形的数据结构，然后结合DOM合并成render树）
+      // 布局render树（Layout/reflow），负责各元素尺寸、位置的计算
+      // 绘制render树（paint），绘制页面像素信息
+      // 浏览器会将各层的信息发送给GPU（GPU进程：最多一个，用于3D绘制等），GPU会将各层合成（composite），显示在屏幕上。
+
+    //   dom树  css 树 两个匹配合成render树 根基render树去布局渲染
+
+      //       display:none 的节点不会被加入Render Tree，而visibility: hidden
+      // 则会，所以，如果某个节点最开始是不显示的，设为display:none是更优的。
+      // display:none 会触发 reflow，而 visibility:hidden 只会触发 repaint，因为没有发现位置变化。
+      // 有些情况下，比如修改了元素的样式，浏览器并不会立刻reflow 或 repaint 一次，而是会把这样的操作积攒一批，然后做一次reflow，这又叫异步 reflow 或增量异步 reflow。但是在有些情况下，比如resize窗口，改变了页面默认的字体等。对于这些操作，浏览器会马上进行 reflow。
+    </script>
+  </body>
+</html>
