@@ -158,3 +158,33 @@ const obj = [];
 const obj2 = obj.constructor;
 // 因为我们还使用了原对象的构造方法，所以它可以保留对象原型上的数据，如果直接使用普通的 {}，那么原型必然是丢失了的。
 console.log(new obj2());
+const a = "asd";
+
+console.log(a.charAt(1));
+
+const phone = "13525890560";
+
+const e = phone.slice(-4);
+const p = phone.slice(0, 3);
+
+const newPhone = e.padStart(phone.length, "*");
+
+console.log(newPhone);
+
+function Person() {
+  this.a = "1";
+  this.c = null;
+}
+
+Person.prototype.b = 1;
+
+const g = new Person();
+
+const r = new g.constructor();
+
+console.log(r);
+
+const arr = [1, null];
+for (const key in r) {
+  console.log(key);
+}
