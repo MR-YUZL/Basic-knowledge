@@ -7,35 +7,93 @@
     <style>
       .flex {
         display: flex;
-        width: 100vw;
-        height: 100vh;
+        width: 100%;
+        height: 100%;
       }
       .auto {
         width: 100%;
         height: 100px;
         background-color: black;
-        margin-top: auto;
       }
       .w-half {
+        flex: 1;
         width: 50px;
         height: 200px;
         background-color: blue;
       }
       .red {
+        flex: 1;
         background-color: brown;
+        height: 200px;
+      }
+      .blue {
+        background-color: blue;
+        height: 200px;
       }
       .inline {
         display: inline-block;
       }
+      .flex-y {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+      }
+      .float {
+        float: right;
+        height: 40px;
+        width: 300px;
+        background-color: yellow;
+      }
+      .child {
+        height: 210px;
+        width: 30px;
+        background-color: red;
+      }
     </style>
   </head>
-  <body>
-    <div class="flex">
-      <!-- <div class="w-half"></div>
-      <div class="auto"></div> -->
-      <div class="red">1</div>
-      <div class="red">2</div>
+  <body style="width: 100vw; height: 100vh; margin: 0">
+    <div class="flex-y">
+      <div class="auto"></div>
+      <div class="w-half">
+        <div class="child"></div>
+      </div>
+      <div><div class="float"></div></div>
+   
+      <!-- <div class="red">1</div>
+        <div class="blue">2</div>
+        <div style="margin: 10px"><div class="float"></div></div> -->
     </div>
+    <!-- <div style="margin: 10px"><div class="float"></div></div> -->
+    <!-- <div
+      style="
+        background-color: gray;
+        height: 50vh;
+        width: 500px;
+        display: flex;
+        flex-direction: column;
+      "
+    >
+      <div>header</div>
+      <div style="display: flex; flex: 1; overflow: auto"> -->
+    <!--定义第一个overflow-->
+    <!-- <div
+          style="
+            flex: 1;
+            background-image: linear-gradient(#e66465, #9198e5);
+            overflow: auto;
+          "
+        > -->
+    <!--定义第二个overflow-->
+    <!-- <p style="height: 300px; width: 100px; background-color: cadetblue">
+            111
+          </p> -->
+    <!--定义高度以溢出父元素-->
+    <!-- </div>
+        <div style="flex: 1; background-color: #e66465">second</div>
+      </div>
+    </div> -->
 
     <!-- <div class="red">
       <div class="inline">123</div>
@@ -96,6 +154,8 @@
       // center
       // space-around
       // space-between
+
+      // overflow仅影响当前元素下子元素的溢出行为，无法指定子元素的子元素溢出行为，也就是常说的子元素不继承。
     </script>
   </body>
 </html>
